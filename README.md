@@ -1,10 +1,10 @@
 # ZHA Controlled Xiaomi Aqara Wireless Switch
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs) [![homeassistant_community](https://img.shields.io/badge/HA%20community-forum-brightgreen)](https://community.home-assistant.io/) 
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs) [![homeassistant_community](https://img.shields.io/badge/HA%20community-forum-brightgreen)](https://community.home-assistant.io/)
 
 <a href="https://www.buymeacoffee.com/so3n" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 Fully customize the button events on a ZHA controlled Xiaomi Aqara Wireless Switch.
-  
+
 ## Installing
 Install via [HACS](https://hacs.xyz/). Alternatively, place the apps folder and its contents in your appdaemon folder.
 
@@ -26,8 +26,8 @@ Install via [HACS](https://hacs.xyz/). Alternatively, place the apps folder and 
 | Variable       | Type   | Required | Description                                                                                                                                                       |
 | -------------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `button event` | string | True     | Set the name of the variable to one of the button events you want to customize: `single`, `double`, `triple`, `quadruple`                                         |
-| action_type    | string | True     | Service call to execute. Valid options: `turn_on`, `turn_off`, `toggle` or `cycle`                                                                                |
-| entity         | string | True     | `entity_id` of the device to control. Can be a list of devices.                                                                                                                              |
+| action_type    | string | True     | Service call to execute. Valid options: `turn_on`, `turn_off`, `toggle` or `cycle` (see advanced example below for example using cycle call)                      |
+| entity         | string | True     | `entity_id` of the device to control. Can be a list of devices.                                                                                                   |
 | parameters     | dict   | False    | Optional. Specify the parameters to use for the service call (eg. `brightness`, `rgb_color`, `flash`, etc). Can include a list of parameters for the cycle option |
 
 
@@ -53,7 +53,7 @@ dimmer_main:
   class: aqara_switch
   switch: '00:00:00:00:00:00:00:00'
   advanced:
-    sinlge: 
+    sinlge:
       action_type: cycle
       entity: light.bedroom
       parameters:
@@ -70,7 +70,7 @@ dimmer_main:
         - group.all_lights
         - switch.bedroom_tv
 
-    
+
 ```
 This advanced config customizes the button events on the Hue Dimmer Switch as follows::
 

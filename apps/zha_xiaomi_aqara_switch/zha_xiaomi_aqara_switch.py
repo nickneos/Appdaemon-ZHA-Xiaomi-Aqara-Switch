@@ -6,17 +6,13 @@ from appdaemon.plugins.hass.hassapi import Hass
 
 # default values
 DEFAULT_DIM_STEP_VALUE = 3
+ALL_LIGHTS_NAME = ("lights", "all_lights")
 BUTTON_MAP = {
     1: "single",
     2: "double",
     3: "triple",
     4: "quadruple"
 }
-ALL_LIGHTS_NAME = [
-    "lights",
-    "all_lights",
-    "group.all_lights"
-]
 
 
 class aqara_switch(Hass):
@@ -30,7 +26,7 @@ class aqara_switch(Hass):
 
         self.time_fired = None
         self.cycle_idx = -1
-        
+
         # get the advanced button config if specified
         self.button_config = self.args.get("advanced", None)
 
@@ -39,7 +35,7 @@ class aqara_switch(Hass):
             if not self.light:
                 self.log("Light entity not specified")
                 return
-            
+
             self.button_config = {
                 "single": {
                     "action_type": "toggle",
@@ -54,7 +50,7 @@ class aqara_switch(Hass):
 
     def button_pressed_cb(self, event_name: str, data: dict, kwargs: dict) -> None:
         """Take action when button is pressed"""
-        
+
         try:
             click_value = data['args']['value']
         except KeyError:
@@ -86,7 +82,7 @@ class aqara_switch(Hass):
                 parameters = [parameters] if type(parameters) is not list else parameters
                 self.cycle_action(entity, parameters)
                 return
-            
+
             # reset cycle index back to -1 on turn_off
             if action_type == "turn_off":
                 self.cycle_idx = -1
@@ -94,19 +90,19 @@ class aqara_switch(Hass):
             # handle entity for all lights
             if entity in ALL_LIGHTS_NAME:
                 self.call_service(
-                    f"light/{action_type}", 
-                    entity_id="all", 
+                    f"light/{action_type}",
+                    entity_id="all",
                     **parameters
                 )
                 return
 
             # lets do this
             self.call_service(
-                f"{entity.split('.')[0]}/{action_type}", 
-                entity_id=entity, 
+                f"{entity.split('.')[0]}/{action_type}",
+                entity_id=entity,
                 **parameters
             )
-            
+
 
     def cycle_action(self, light, param_list):
         """Cycle through the parameter list with each button press"""
@@ -115,21 +111,21 @@ class aqara_switch(Hass):
             # when index -1, turn on light with previous settings
             parameters = {}
         else:
-            # otherwise get paramaters from list using index 
+            # otherwise get paramaters from list using index
             try:
                 parameters = param_list[self.cycle_idx]
             except IndexError:
                 self.cycle_idx = 0
                 parameters = param_list[self.cycle_idx]
-        
+
         # lets do this
         self.call_service(
-            f"{light.split('.')[0]}/turn_on", 
-            entity_id=light, 
+            f"{light.split('.')[0]}/turn_on",
+            entity_id=light,
             **parameters
         )
-        
+
         # increment index for next button press
-        self.cycle_idx += 1              
+        self.cycle_idx += 1
 
 
