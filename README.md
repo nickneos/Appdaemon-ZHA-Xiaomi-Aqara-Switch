@@ -53,7 +53,7 @@ dimmer_main:
   class: aqara_switch
   switch: '00:00:00:00:00:00:00:00'
   advanced:
-    sinlge:
+    single:
       action_type: cycle
       entity: light.bedroom
       parameters:
