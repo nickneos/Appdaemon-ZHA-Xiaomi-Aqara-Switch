@@ -74,7 +74,11 @@ dimmer_main:
 ```
 This advanced config customizes the button events on the Hue Dimmer Switch as follows::
 
-* `single` click turns on or off the bedroom light by cycling through the following settings with each button press: 1) 33% brightness 3000 kelvin; 2) 67% brightness 3000 kelvin; 3) 100% brightness 3000 kelvin; and 4) off.
+* `single` click turns on or off the bedroom light by cycling through the following with each button press: 
+  1. Bulb on at 33% brightness and 3000 kelvin.
+  2. Bulb on at 67% brightness and 3000 kelvin.
+  3. Bulb on at 100% brightness and 3000 kelvin.
+  4. Bulb off.
 * `double` click turns of all lights, and the bedroom tv.
 
 
