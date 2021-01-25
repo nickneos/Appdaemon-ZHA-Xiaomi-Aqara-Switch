@@ -97,11 +97,17 @@ class aqara_switch(Hass):
                 return
 
             # lets do this
-            self.call_service(
-                f"{entity.split('.')[0]}/{action_type}",
-                entity_id=entity,
-                **parameters
-            )
+            if entity.split('.')[0].lower() == 'group':
+                self.call_service(
+                    f"homeassistant/{action_type}",
+                    entity_id=entity
+                )
+            else:
+                self.call_service(
+                    f"{entity.split('.')[0]}/{action_type}",
+                    entity_id=entity,
+                    **parameters
+                )
 
 
     def cycle_action(self, light, param_list):
