@@ -1,7 +1,6 @@
 # ZHA Controlled Xiaomi Aqara Wireless Switch
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs) [![homeassistant_community](https://img.shields.io/badge/HA%20community-forum-brightgreen)](https://community.home-assistant.io/)
 
-<a href="https://www.buymeacoffee.com/so3n" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+**_NOTE: This app is no longer being updated. Check out [ControllerX](https://github.com/xaviml/controllerx) instead_**
 
 Fully customize the button events on a ZHA controlled Xiaomi Aqara Wireless Switch.
 
@@ -81,7 +80,3 @@ This advanced config customizes the button events on the Hue Dimmer Switch as fo
   4. Bulb off.
 * `double` click turns of all lights, and the bedroom tv.
 
-
-<hr/>
-
-<a href="https://www.buymeacoffee.com/so3n" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
